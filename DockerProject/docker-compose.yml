@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app # hot reload
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app # hot reload
+      - /app/node_modules # keep node_modules inside container
+    depends_on:
+      - backend
+    restart: unless-stopped

@@ -1,0 +1,34 @@
+#build container
+docker-compose up --build
+OR
+docker-compose up -d --build
+
+#remove containers
+docker-compose down
+
+#list containers
+docker ps -a
+
+#remove containers by name
+docker rm -f movie-frontend movie-backend
+
+#remove all containers
+docker rm -f $(docker ps -aq)
+
+#list docker images
+docker images
+
+#remove images
+docker rmi movie-chatbot-frontend movie-chatbot-backend
+
+#remove all images
+docker rmi -f $(docker images -q)
+
+#remove docker networks
+docker network prune
+
+#removes containers, images and networks
+docker-compose down --rmi all
+
+#remove docker volume (permanent storages)
+docker volume prune
